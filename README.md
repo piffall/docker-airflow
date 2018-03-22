@@ -1,12 +1,12 @@
 # docker-airflow
-[![CircleCI branch](https://img.shields.io/circleci/project/puckel/docker-airflow/master.svg?maxAge=2592000)](https://circleci.com/gh/puckel/docker-airflow/tree/master)
-[![Docker Build Status](https://img.shields.io/docker/build/puckel/docker-airflow.svg)]()
+[![CircleCI branch](https://img.shields.io/circleci/project/piffall/docker-airflow/master.svg?maxAge=2592000)](https://circleci.com/gh/piffall/docker-airflow/tree/master)
+[![Docker Build Status](https://img.shields.io/docker/build/piffall/docker-airflow.svg)]()
 
-[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/r/puckel/docker-airflow/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/puckel/docker-airflow.svg)]()
-[![Docker Stars](https://img.shields.io/docker/stars/puckel/docker-airflow.svg)]()
+[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/r/piffall/docker-airflow/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/piffall/docker-airflow.svg)]()
+[![Docker Stars](https://img.shields.io/docker/stars/piffall/docker-airflow.svg)]()
 
-This repository contains **Dockerfile** of [apache-airflow](https://github.com/apache/incubator-airflow) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/puckel/docker-airflow/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
+This repository contains **Dockerfile** of [apache-airflow](https://github.com/apache/incubator-airflow) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/piffall/docker-airflow/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
 
 ## Informations
 
@@ -15,25 +15,25 @@ This repository contains **Dockerfile** of [apache-airflow](https://github.com/a
 * Install [Docker Compose](https://docs.docker.com/compose/install/)
 * Following the Airflow release from [Python Package Index](https://pypi.python.org/pypi/apache-airflow)
 
-/!\ If you want to use Airflow using Python 2, use TAG [1.8.1](https://github.com/puckel/docker-airflow/releases/tag/1.8.1)
+/!\ If you want to use Airflow using Python 2, use TAG [1.8.1](https://github.com/piffall/docker-airflow/releases/tag/1.8.1)
 
 ## Installation
 
 Pull the image from the Docker repository.
 
-        docker pull puckel/docker-airflow
+        docker pull piffall/docker-airflow
 
 ## Build
 
 For example, if you need to install [Extra Packages](https://pythonhosted.org/airflow/installation.html#extra-package), edit the Dockerfile and then build it.
 
-        docker build --rm -t puckel/docker-airflow .
+        docker build --rm -t piffall/docker-airflow .
 
 ## Usage
 
 By default, docker-airflow runs Airflow with **SequentialExecutor** :
 
-        docker run -d -p 8080:8080 puckel/docker-airflow
+        docker run -d -p 8080:8080 piffall/docker-airflow
 
 If you want to run another executor, use the other docker-compose.yml files provided in this repository.
 
@@ -49,7 +49,7 @@ NB : If you don't want to have DAGs example loaded (default=True), you've to set
 
 `LOAD_EX=n`
 
-        docker run -d -p 8080:8080 -e LOAD_EX=n puckel/docker-airflow
+        docker run -d -p 8080:8080 -e LOAD_EX=n piffall/docker-airflow
 
 If you want to use Ad hoc query, make sure you've configured connections:
 Go to Admin -> Connections and Edit "postgres_default" set this values (equivalent to values in airflow.cfg/docker-compose*.yml) :
@@ -104,7 +104,7 @@ This can be used to scale to a multi node setup using docker swarm.
 
 If you want to run other airflow sub-commands, such as `list_dags` or `clear` you can do so like this:
 
-        docker run --rm -ti puckel/docker-airflow airflow list_dags
+        docker run --rm -ti piffall/docker-airflow airflow list_dags
 
 or with your docker-compose set up like this:
 
@@ -112,8 +112,8 @@ or with your docker-compose set up like this:
 
 You can also use this to run a bash shell or any other command in the same environment that airflow would be run in:
 
-          docker run --rm -ti puckel/docker-airflow bash
-          docker run --rm -ti puckel/docker-airflow ipython
+          docker run --rm -ti piffall/docker-airflow bash
+          docker run --rm -ti piffall/docker-airflow ipython
 
 # Wanna help?
 
