@@ -62,6 +62,8 @@ RUN apt-get update -y \
     && pip install pyOpenSSL \
     && pip install ndg-httpsclient \
     && pip install pyasn1 \
+    && pip install pyasn1-modules \
+    && pip install pycrypto \
     && pip install git+https://github.com/apache/incubator-airflow${AIRFLOW_BRANCH}#egg=apache-airflow[all] \
     && pip install kubernetes \
     && pip install google-api-python-client \
