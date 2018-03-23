@@ -23,8 +23,10 @@ ENV LC_ALL en_US.UTF-8
 ENV LC_CTYPE en_US.UTF-8
 ENV LC_MESSAGES en_US.UTF-8
 
-RUN export buildDeps=' \
-        python-dev \
+RUN apt-get update -y \
+    && apt-get install -y apt-utils \
+    && apt-get upgrade -y \
+    && apt-get install -y \
         libkrb5-dev \
         libsasl2-dev \
         libssl-dev \
@@ -33,10 +35,11 @@ RUN export buildDeps=' \
         liblapack-dev \
         libpq-dev \
         libmysqlclient-dev \
-    ' \
-    && apt-get update -yqq \
-    && apt-get upgrade -yqq \
-    && apt-get install -yqq \
+        libsasl2-dev \
+        libldap2-dev \
+        libffi-dev \
+        libssl-dev \
+        python-dev \
         build-essential \
         apt-utils \
         git \
@@ -48,6 +51,7 @@ RUN export buildDeps=' \
         rsync \
         netcat \
         locales \
+        python-mysqldb \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
@@ -58,10 +62,10 @@ RUN export buildDeps=' \
     && pip install pyOpenSSL \
     && pip install ndg-httpsclient \
     && pip install pyasn1 \
+    && pip install git+https://github.com/apache/incubator-airflow${AIRFLOW_BRANCH}#egg=apache-airflow[all] \
     && pip install kubernetes \
     && pip install google-api-python-client \
     && pip install celery[redis]==4.0.2 \
-    && pip install git+https://github.com/apache/incubator-airflow${AIRFLOW_BRANCH}#egg=apache-airflow[crypto,gcp_api,postgres,celery,hive,jdbc] \
     && apt-get purge --auto-remove -yqq $buildDeps \
     && apt-get clean \
     && rm -rf \
