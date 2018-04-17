@@ -56,7 +56,8 @@ RUN apt-get update -y \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
     && useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow \
-    && pip install -U pip setuptools wheel \
+    && pip install -U pip setuptools wheel --upgrade \
+    && pip install -U pip setuptools wheel --upgrade \
     && pip install Cython \
     && pip install pytz \
     && pip install pyOpenSSL \
