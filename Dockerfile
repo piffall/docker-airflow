@@ -55,9 +55,11 @@ RUN apt-get update -y \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
-    && useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow \
-    && pip install -U pip setuptools wheel --upgrade \
-    && pip install -U pip setuptools wheel --upgrade \
+    && useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow
+
+RUN pip install -U pip setuptools wheel --upgrade
+
+RUN pip install -U pip setuptools wheel --upgrade \
     && pip install Cython \
     && pip install pytz \
     && pip install pyOpenSSL \
