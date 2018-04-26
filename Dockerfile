@@ -74,7 +74,7 @@ RUN pip install -U pip setuptools wheel --upgrade \
     && pip install pyasn1 \
     && pip install pyasn1-modules \
     && pip install pycrypto \
-    && pip install git+https://github.com/apache/incubator-airflow${AIRFLOW_BRANCH}#egg=apache-airflow[all] \
+    && pip install git+https://github.com/piffall/incubator-airflow${AIRFLOW_BRANCH}#egg=apache-airflow[all] \
     && pip install kubernetes \
     && pip install google-api-python-client \
     && pip install celery[redis]==4.0.2 \
