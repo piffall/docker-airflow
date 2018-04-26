@@ -52,14 +52,21 @@ RUN apt-get update -y \
         netcat \
         locales \
         python-mysqldb \
+        software-properties-common
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
     && useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow
 
+RUN sudo add-apt-repository ppa:deadsnakes/ppa -y \
+    && apt-get install -y \
+        python3.6 \
+        python3.6-dev
+
 RUN pip install -U pip setuptools wheel --upgrade
 
 RUN pip install -U pip setuptools wheel --upgrade \
+    && pip install virtualenv \
     && pip install Cython \
     && pip install pytz \
     && pip install pyOpenSSL \
@@ -67,7 +74,7 @@ RUN pip install -U pip setuptools wheel --upgrade \
     && pip install pyasn1 \
     && pip install pyasn1-modules \
     && pip install pycrypto \
-    && pip install git+https://github.com/piffall/incubator-airflow${AIRFLOW_BRANCH}#egg=apache-airflow[all] \
+    && pip install git+https://github.com/apache/incubator-airflow${AIRFLOW_BRANCH}#egg=apache-airflow[all] \
     && pip install kubernetes \
     && pip install google-api-python-client \
     && pip install celery[redis]==4.0.2 \
