@@ -58,7 +58,7 @@ RUN apt-get update -y \
     && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 \
     && useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow
 
-RUN sudo add-apt-repository ppa:deadsnakes/ppa -y \
+RUN add-apt-repository ppa:deadsnakes/ppa -y \
     && apt-get install -y \
         python3.6 \
         python3.6-dev
