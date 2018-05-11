@@ -59,6 +59,7 @@ RUN apt-get update -y \
     && useradd -ms /bin/bash -d ${AIRFLOW_HOME} airflow
 
 RUN add-apt-repository ppa:deadsnakes/ppa -y \
+    && apt-get update -y \
     && apt-get install -y \
         python3.6 \
         python3.6-dev
